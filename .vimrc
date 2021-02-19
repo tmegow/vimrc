@@ -1,3 +1,4 @@
+execute pathogen#infect()
 filetype plugin on
 filetype indent on
 syntax on
@@ -71,3 +72,6 @@ au FileType markdown match OverLength /\%81v.\+/
 
 "autocomplete options
 set completeopt=menuone
+
+set updatetime=100
+highlight! link SignColumn LineNr
