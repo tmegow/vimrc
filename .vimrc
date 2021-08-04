@@ -38,7 +38,8 @@ set ai
 set si
 
 au FileType go set noexpandtab
-au FileType yaml set sw=2 ts=2
+au FileType yaml set sw=2 ts=2 sts=2 expandtab
+autocmd FileType yaml setlocal indentexpr=
 
 set virtualedit=block
 
@@ -47,9 +48,6 @@ set splitright
 "friendlier tab completion in vim command prompt
 set wildmenu
 set wildmode=list:longest
-
-nnoremap <PageUp> <C-u>
-nnoremap <PageDown> <C-d>
 
 set mouse=a
 map <ScrollWheelUp> <C-Y>
@@ -75,3 +73,18 @@ set completeopt=menuone
 
 set updatetime=100
 highlight! link SignColumn LineNr
+
+
+" Set HCL vim-comments to be hashtag, not /* this style */
+autocmd FileType tf setl cms=#\ %s
+
+
+" Enable TerraformFmt when saving *.tf and *.tfvars files
+let g:terraform_fmt_on_save=1
+
+
+" Buftabline config
+set hidden
+nnoremap <PageUp> :bnext<CR>
+nnoremap <PageDown> :bprev<CR>
+let g:buftabline_show=1
