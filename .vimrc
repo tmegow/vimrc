@@ -1,3 +1,4 @@
+execute pathogen#infect()
 filetype plugin on
 filetype indent on
 syntax on
@@ -15,7 +16,8 @@ highlight LineNr ctermfg=58 ctermbg=232
 set foldcolumn=2
 highlight FoldColumn ctermfg=86 ctermbg=232
 
-set clipboard=unnamed ""enables putting yanks/deletes/etc in clipboard
+" set clipboard=unnamed ""enables putting yanks/deletes/etc in clipboard
+set clipboard=unnamedplus ""enables putting yanks/deletes/etc in clipboard
 
 set ttyfast
 set lazyredraw
@@ -65,9 +67,28 @@ hi DiffDelete       ctermbg=235  ctermfg=131  guibg=#262626 guifg=#af5f5f cterm=
 hi DiffText         ctermbg=235  ctermfg=208  guibg=#262626 guifg=#ff8700 cterm=reverse        gui=reverse
 nnoremap do do]c
 nnoremap dp dp]c
+nnoremap gi :GoImports<CR>
 
 highlight OverLength ctermbg=234
 au FileType markdown match OverLength /\%81v.\+/
 
 "autocomplete options
 set completeopt=menuone
+
+
+"Previous manual formatting for C/C++/Java
+"autocmd BufNewFile,BufRead *.c set formatprg=astyle\ -T4p
+
+" Enable vim-autoformat plugin on bufwrite
+au BufWrite * :Autoformat
+
+"for i in range(97,122)
+"    let c = nr2char(i)
+"    exec "map \e".c." <M-".c.">"
+"    exec "map! \e".c." <M-".c.">"
+"endfor
+"
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+"noremap <M-Left>  :tabmove -1<CR>
+"noremap <M-Right> :tabmove +1<CR>
